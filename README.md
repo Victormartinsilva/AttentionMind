@@ -1,4 +1,7 @@
 # AttentionMind — Transformers do Zero
+https://attentionmind-emhmu7x2xkrrnplfixapx6.streamlit.app/
+
+<img width="1874" height="824" alt="image" src="https://github.com/user-attachments/assets/bbcd0ef8-7935-4553-90eb-da4e4e73741f" />
 
 Demonstração educativa do **mecanismo de Atenção e Transformers** implementados em **NumPy puro**. Classifica sentimento de textos agrícolas (ordens de serviço, relatórios de campo) e visualiza o que a rede "está olhando" em cada palavra.
 
