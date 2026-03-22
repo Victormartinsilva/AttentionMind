@@ -947,8 +947,8 @@ def main():
                                    value=st.session_state.get("_lr_bow", 0.15),
                                    help="BoW é mais simples e aceita lr maior sem instabilidade")
         c_train, c_reset = st.columns([3, 1])
-        train_btn = c_train.button("Treinar modelos", use_container_width=True)
-        if c_reset.button("↺", use_container_width=True, help="Redefinir hiperparâmetros para os valores padrão"):
+        train_btn = c_train.button("Treinar modelos", width="stretch")
+        if c_reset.button("↺", width="stretch", help="Redefinir hiperparâmetros para os valores padrão"):
             st.session_state["_ep"]     = 30
             st.session_state["_lr_tf"]  = 0.05
             st.session_state["_lr_bow"] = 0.15
@@ -1102,11 +1102,11 @@ def main():
             if exemplo != "-- selecione --":
                 user_text = exemplo
 
-            analyze_btn = st.button("Analisar sentimento", use_container_width=True)
+            analyze_btn = st.button("Analisar sentimento", width="stretch")
 
         with c1b:
             st.markdown('<p class="sl">Resultados do conjunto de teste</p>', unsafe_allow_html=True)
-            st.plotly_chart(plot_comparison(h_tf, h_bow), use_container_width=True)
+            st.plotly_chart(plot_comparison(h_tf, h_bow), width="stretch")
 
         if analyze_btn and not user_text.strip():
             st.warning("Digite um texto para analisar.")
@@ -1224,7 +1224,7 @@ def main():
                                    yaxis_title="%", barmode="group",
                                    legend=dict(bgcolor="#0b1117", bordercolor="#22334a"),
                                    height=280, margin=dict(t=40,b=30,l=40,r=20))
-            st.plotly_chart(fig_prob, use_container_width=True)
+            st.plotly_chart(fig_prob, width="stretch")
 
     # ════════════════════════════════════════════════════
     # TAB 2: ATENCAO TOKEN x TOKEN
@@ -1258,7 +1258,7 @@ def main():
             title_h = f"Atencao — {sel_head}"
 
         st.plotly_chart(plot_attention_heatmap(mat, toks_sel, title=title_h),
-                        use_container_width=True)
+                        width="stretch")
 
         # Tokens com brilho da atencao
         st.markdown('<p class="sl">Tokens com intensidade proporcional a atencao recebida</p>', unsafe_allow_html=True)
@@ -1303,7 +1303,7 @@ def main():
             st.error("Atenção não disponível — retreine o modelo.")
             st.stop()
 
-        st.plotly_chart(plot_multihead(attn_mh, toks_mh), use_container_width=True)
+        st.plotly_chart(plot_multihead(attn_mh, toks_mh), width="stretch")
 
         # Analise de cada cabeca
         st.markdown('<p class="sl">Token mais atendido por cada cabeca (coluna com maior media)</p>', unsafe_allow_html=True)
@@ -1353,7 +1353,7 @@ def main():
                 fig_emb, var_ratio = plot_embeddings_2d(
                     transformer, tokenizer, all_texts, all_labels
                 )
-            st.plotly_chart(fig_emb, use_container_width=True)
+            st.plotly_chart(fig_emb, width="stretch")
             st.markdown(
                 f'<div style="font-family:IBM Plex Mono,monospace;font-size:.72rem;color:#445566;margin-top:-.5rem">'
                 f'PC1 explica {var_ratio[0]*100:.1f}% da variancia | '
@@ -1366,7 +1366,7 @@ def main():
 
         # Embedding do positional encoding
         st.markdown('<p class="sl" style="margin-top:1.5rem">Positional Encoding</p>', unsafe_allow_html=True)
-        st.plotly_chart(plot_pos_encoding(), use_container_width=True)
+        st.plotly_chart(plot_pos_encoding(), width="stretch")
         st.markdown(
             '<div style="font-family:IBM Plex Mono,monospace;font-size:.72rem;color:#445566">'
             'Cada linha e uma posicao no texto. Colunas pares usam seno, impares usam cosseno. '
@@ -1489,11 +1489,11 @@ def attention(X, W_Q, W_K, W_V, d_head):
             """, language="python")
 
         st.markdown('<hr class="dv">', unsafe_allow_html=True)
-        st.plotly_chart(plot_loss_curves(h_tf, h_bow), use_container_width=True)
+        st.plotly_chart(plot_loss_curves(h_tf, h_bow), width="stretch")
 
         st.markdown('<p class="sl">Dataset completo</p>', unsafe_allow_html=True)
         df_ds = pd.DataFrame(DATASET, columns=["Texto", "Sentimento"])
-        st.dataframe(df_ds, hide_index=True, use_container_width=True,
+        st.dataframe(df_ds, hide_index=True, width="stretch",
                      column_config={"Texto": st.column_config.TextColumn(width="large")})
         st.caption(f"{len(DATASET)} textos agricolas | 15 positivos, 15 negativos, 15 neutros | 75% treino / 25% validacao")
 
